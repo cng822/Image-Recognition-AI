@@ -9,9 +9,7 @@ and classified through the use of artificial intelligence. The purpose of this o
 public with a tool that is easily able to recognise different objects in an image, regardless of their location in the image.
 
 ## What Does It Do? ##
-This project is able to recognise objects in an image through the use of pytorch models. The models available in this project 
-are; AlexNet, DenseNet, ResNet and VGG. Using the main file provided, either of these models can be passed through and used 
-in order to train and test the object recognition. 
+This project is able to recognise objects in an image through the use of four pytorch models. The models available in this project are; AlexNet, SeNet, ResNet and VGG. Using the main.py file provided, the user can choose which model they would like to use.
 
 ## Testing Environment ##
 This project uses the CIFAR10 dataset for the training and testing dataset. The models presented in this project were tested with this dataset on two seperate environments. The results highlighted here have been 
@@ -44,11 +42,12 @@ using the command, <br />
 $ git clone https://github.com/UOA-CS302-2020/CS302-Python-2020-Group33.git 
 $ cd CS302-Python-2020-Group33
 ```
-
+If downloading the code onto a local device, the project can be run on any Python compatible IDE. Only the main.py file needs 
+to be run. 
 ## Results From Models Provided ##
 | Model Used | Accuracy Obtained |
 | ---------- | ----------------- |
-| AlexNet    | Content Cell      |
+| AlexNet    | 70%               |
 | ResNet     | Content Cell      |
 | SeNet      | Content Cell      |
 | VGG        | Content Cell      |
