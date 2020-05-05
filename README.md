@@ -14,7 +14,7 @@ are; AlexNet, DenseNet, ResNet and VGG. Using the main file provided, either of 
 in order to train and test the object recognition. 
 
 ## Testing Environment ##
-The models presented in this project were tested out on two seperate environments. The results highlighted here have been 
+This project uses the CIFAR10 dataset for the training and testing dataset. The models presented in this project were tested with this dataset on two seperate environments. The results highlighted here have been 
 obtained in these environments. The details for the testing environments 
 are listed below. <br />
 ### Environment 1: <br />
