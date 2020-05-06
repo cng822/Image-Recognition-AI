@@ -1,6 +1,6 @@
 # CS302-Python-2020-Group33 - Object Classification #
 
-The purpose of this project is to create an object recogniser with the help of pytorch models. 
+The purpose of this project is to create an object recogniser with the help of PyTorch models. 
 
 ## Motivation ##
 
@@ -30,7 +30,7 @@ IDE: Pycharm <br />
 The list below shows the tools that were used in this project and where they can be downloaded from. <br />
 Python 3.7 - https://www.python.org/downloads/release/python-377/ <br />
 Anaconda 3 - https://www.anaconda.com/products/individual <br />
-Pytorch - https://pytorch.org/get-started/locally/
+PyTorch - https://pytorch.org/get-started/locally/
 ###### If wanting to used CUDA, make sure GPU in your computer is by NVIDIA ######
 Follow the instructions provided on the links given and create a Conda environment.
 
