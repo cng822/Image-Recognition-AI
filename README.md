@@ -12,7 +12,7 @@ public with a tool that is easily able to recognise different objects in an imag
 This project is able to recognise objects in an image through the use of four pytorch models. The models available in this project are; AlexNet, SeNet, ResNet and VGG. Using the main.py file provided, the user can choose which model they would like to use.
 
 ## Testing Environment ##
-This project uses the CIFAR10 dataset for the training and testing dataset. The models presented in this project were tested with this dataset on two seperate environments. The results highlighted here have been 
+This project uses the CIFAR-10 dataset for the training and testing dataset. The models presented in this project were tested with this dataset on two seperate environments. The results highlighted here have been 
 obtained in these environments. The details for the testing environments 
 are listed below. <br />
 ### Environment 1: <br />
