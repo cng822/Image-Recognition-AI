@@ -49,7 +49,7 @@ If wanting to run the code through an IDE, ensure the IDE is Python compatible. 
 | AlexNet    | 70%               |
 | ResNet     | 85%               |
 | SENet      | 85%               |
-| VGG        | Content Cell      |
+| VGG        | 85%               |
 
 
 
