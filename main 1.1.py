@@ -7,7 +7,7 @@ import torch.optim as optim
 from models.VGG import VGG
 from models.ResNet import ResNet, BasicBlock
 from models.AlexNet import AlexNet
-from models.SENet import PreActBlock 
+from models.SENet import SENet, PreActBlock 
 from torch.optim.lr_scheduler import StepLR
 from torchvision import transforms, datasets
 import numpy as np
