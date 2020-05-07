@@ -7,7 +7,7 @@ import torch.optim as optim
 from models.VGG import VGG
 from models.ResNet import ResNet, BasicBlock
 from models.AlexNet import AlexNet
-from models.DenseNet import DenseNet, Bottleneck #need change
+from models.SENet import PreActBlock 
 from torch.optim.lr_scheduler import StepLR
 from torchvision import transforms, datasets
 import numpy as np
@@ -48,10 +48,10 @@ while found != 1:
         model = AlexNet()
         found = 1
     elif val == "2":
-        model = ResNet()  # to change
+        model = ResNet(BasicBlock, [3, 4, 6, 3])
         found = 1
     elif val == "3":
-        model = DenseNet(Bottleneck, [6, 12, 48, 32], growth_rate=32)  # to change
+        model = SENet(PreActBlock, [2, 2, 2, 2])
         found = 1
     elif val == "4":
         model = VGG()
