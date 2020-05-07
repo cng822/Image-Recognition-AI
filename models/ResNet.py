@@ -1,3 +1,5 @@
+#Reference: https://github.com/kuangliu/pytorch-cifar/blob/master/models/resnet.py
+
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
