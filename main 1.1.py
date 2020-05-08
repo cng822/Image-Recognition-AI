@@ -40,7 +40,7 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 kwargs = {'num_workers': 1, 'pin_memory': True} if device else {}
 
-print("Please the number of one of the following models: \n AlexNet : 1 \n ResNet50 : 2 \n SENet : 3 \n VGG16 : 4")
+print("Please enter the number of one of the following models: \n AlexNet : 1 \n ResNet50 : 2 \n SENet : 3 \n VGG16 : 4")
 val = input("Enter here: ")
 found = 0
 while found != 1:
