@@ -7,7 +7,7 @@ import torch.optim as optim
 from models.VGG import VGG
 from models.ResNet import ResNet, BasicBlock
 from models.AlexNet import AlexNet
-from models.SENet import SENet, PreActBlock 
+from models.SENet import SENet, BasicBlock 
 from torch.optim.lr_scheduler import StepLR
 from torchvision import transforms, datasets
 import numpy as np
@@ -51,7 +51,7 @@ while found != 1:
         model = ResNet(BasicBlock, [3, 4, 6, 3])
         found = 1
     elif val == "3":
-        model = SENet(PreActBlock, [2, 2, 2, 2])
+        model = SENet(BasicBlock, [2, 2, 2, 2])
         found = 1
     elif val == "4":
         model = VGG()
