@@ -34,10 +34,11 @@ train_CIFAR10 = torchvision.datasets.CIFAR10(root='./data', train=True,
 # Imports the testing dataset
 test_CIFAR10 = torchvision.datasets.CIFAR10(root='./data', train=False,
                                         download=True, transform= transform)
+# loads training dataset
+train_loader = torch.utils.data.DataLoader(train_CIFAR10, batch_size = 32, shuffle = True)
 
-train_loader = torch.utils.data.DataLoader(train_CIFAR10, batch_size = 32, shuffle = True)# batch_size to change
-
-test_loader = torch.utils.data.DataLoader(test_CIFAR10, batch_size = 64, shuffle = True)# batch_size to change
+# loads testing dataset
+test_loader = torch.utils.data.DataLoader(test_CIFAR10, batch_size = 64, shuffle = True)
 
 classes = ('plane', 'car', 'bird', 'cat',
            'deer', 'dog', 'frog', 'horse', 'ship', 'truck')
@@ -94,6 +95,8 @@ criterion = nn.CrossEntropyLoss()
 
 # Optimizer function
 optimizer = optim.Adam(model.parameters(), lr= learning_rate)
+
+# Step function
 scheduler = StepLR(optimizer, step_size=1, gamma= 0.7)
 
 # Training phase
@@ -105,20 +108,20 @@ def train(model, device, train_loader, optimizer, epoch):
     # loops through the training set
     for batch_no, (data, target) in enumerate(train_loader):
         data, target = data.to(device), target.to(device)
-        optimizer.zero_grad()
+        optimizer.zero_grad() #resets
         output = model(data)
-        loss = criterion(output, target)
-        loss.backward()
+        loss = criterion(output, target)  
+        loss.backward() # computes gradients
         optimizer.step()
-        loss_tol += loss.item()
+        loss_tol += loss.item() 	
         _, predicted = output.max(1)
-        correct += predicted.eq(target).sum().item()
+        correct += predicted.eq(target).sum().item() 	# if correct, increment 1
         if batch_no % 10 == 0:
             print('Train Epoch: {} [{}/{} ({:.0f}%)]\tLoss: {:.6f}'.format(
                 epoch, batch_no * len(data), len(train_loader.dataset),
                 100. * batch_no / len(train_loader), loss.item()))
-    loss_graph.append(loss_tol / len(train_loader.dataset))
-    accuracy_train.append(correct / len(train_loader.dataset))
+    loss_graph.append(loss_tol / len(train_loader.dataset))		# prints out which epoch and the loss per batch
+    accuracy_train.append(correct / len(train_loader.dataset))		
 
 # Test phase
 def test(model, device, test_loader):
@@ -132,9 +135,9 @@ def test(model, device, test_loader):
             output = model(data)
             loss = criterion(output, target)
             test_loss += loss.item()
-            _, predicted = output.max(1)
-            actual.extend(target.view_as(predicted))
-            prediction.extend(predicted)
+            _, predicted = output.max(1)			
+            actual.extend(target.view_as(predicted))		# stores actual image
+            prediction.extend(predicted)			# stores predicted output
             correct += predicted.eq(target).sum().item()
         tol_loss = test_loss
         test_loss /= len(test_loader.dataset)
@@ -142,7 +145,7 @@ def test(model, device, test_loader):
         loss_test.append(tol_loss / len(test_loader.dataset))
         print('\nTest set: Average loss: {:.4f}, Accuracy: {}/{} ({:.0f}%)\n'.format(
             test_loss, correct, len(test_loader.dataset),
-            100. * correct / len(test_loader.dataset)))
+            100. * correct / len(test_loader.dataset))) 	# prints out average accuracy of that epoch
 
 
 # Loops through the amount of epoch
