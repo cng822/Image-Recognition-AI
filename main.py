@@ -12,9 +12,12 @@ from torch.optim.lr_scheduler import StepLR
 from torchvision import transforms, datasets
 import numpy as np
 
+# CONSTANTS
 epoches = 10
 start_epoch = 1
 learning_rate = 0.001
+
+# Arrays to store values for our plots and confusion matrix
 actual = []
 prediction = []
 loss_graph = []
@@ -23,9 +26,12 @@ accuracy_train = []
 loss_test = []
 
 transform = transforms.Compose([transforms.ToTensor(), transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
+
+# Imports the training dataset
 train_CIFAR10 = torchvision.datasets.CIFAR10(root='./data', train=True,
                                         download=True, transform= transform )
 
+# Imports the testing dataset
 test_CIFAR10 = torchvision.datasets.CIFAR10(root='./data', train=False,
                                         download=True, transform= transform)
 
@@ -36,13 +42,17 @@ test_loader = torch.utils.data.DataLoader(test_CIFAR10, batch_size = 64, shuffle
 classes = ('plane', 'car', 'bird', 'cat',
            'deer', 'dog', 'frog', 'horse', 'ship', 'truck')
 
+# check if CUDA is available, if yes, it will use gpu if not then it will use cpu
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 kwargs = {'num_workers': 1, 'pin_memory': True} if device else {}
 
+# Selecting which model to use
 print("Please enter the number of one of the following models: \n AlexNet : 1 \n ResNet50 : 2 \n SENet : 3 \n VGG16 : 4")
 val = input("Enter here: ")
 found = 0
+
+# if value is found then model is selected and while loop exits
 while found != 1:
     if val == "1":
         model = AlexNet()
@@ -62,7 +72,7 @@ while found != 1:
 
 model = model.to(device)
 
-
+# showing the image function
 def imshow(img):
     img = img / 2 + 0.5     # unnormalize
     npimg = img.numpy()
@@ -79,16 +89,20 @@ images, labels = dataiter.next()
     # print labels
 # print(' '.join('%5s' % classes[labels[j]] for j in range(10)))
 
+# Loss function
 criterion = nn.CrossEntropyLoss()
+
+# Optimizer function
 optimizer = optim.Adam(model.parameters(), lr= learning_rate)
-# optimizer = optim.SGD(model.parameters(), lr= learning_rate, momentum = 0.9)
 scheduler = StepLR(optimizer, step_size=1, gamma= 0.7)
 
-
+# Training phase
 def train(model, device, train_loader, optimizer, epoch):
     model.train()
     loss_tol = 0
     correct = 0
+	
+    # loops through the training set
     for batch_no, (data, target) in enumerate(train_loader):
         data, target = data.to(device), target.to(device)
         optimizer.zero_grad()
@@ -106,7 +120,7 @@ def train(model, device, train_loader, optimizer, epoch):
     loss_graph.append(loss_tol / len(train_loader.dataset))
     accuracy_train.append(correct / len(train_loader.dataset))
 
-
+# Test phase
 def test(model, device, test_loader):
     model.eval()
     correct = 0
@@ -131,16 +145,22 @@ def test(model, device, test_loader):
             100. * correct / len(test_loader.dataset)))
 
 
-
+# Loops through the amount of epoch
 for epoch in range(start_epoch, epoches + 1):
     train(model, device, train_loader, optimizer, epoch)
     test(model, device, test_loader)
     scheduler.step()
 
 print('Confusion matrix:')
+
+# Prints a confusion matrix where we see what the neural network predicted vs what the image class actual
 print(metrics.confusion_matrix(actual, prediction))
+
+# Prints the precision, recall and f1 score
 print(metrics.classification_report(actual, prediction, digits=3))
 
+
+# Plots a loss graph
 plt.subplot(211)
 plt.plot(loss_graph, label="training")
 plt.plot(loss_test, label="testing")
@@ -148,6 +168,7 @@ plt.xlabel('Number of epochs')
 plt.ylabel('Loss')
 plt.legend(loc="upper right")
 
+# Plots an accuracy graph
 plt.subplot(212)
 plt.plot(accuracy_train, label="training")
 plt.plot(accuracy_graph, label="testing")
@@ -155,3 +176,5 @@ plt.xlabel('Number of epochs')
 plt.ylabel('Accuracy(%)')
 plt.legend(loc="upper right")
 plt.show()
+
+# Figure displays two plots - Top: Loss Bottom: Accuracy
