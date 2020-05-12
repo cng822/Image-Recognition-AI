@@ -41,6 +41,7 @@ using the command, <br />
 ``` 
 $ git clone https://github.com/UOA-CS302-2020/CS302-Python-2020-Group33.git 
 $ cd CS302-Python-2020-Group33
+$ main.py
 ```
 If wanting to run the code through an IDE, ensure the IDE is Python compatible. Only the main.py file needs to be run. 
 ## Results From Models Provided ##
