@@ -1,4 +1,4 @@
-# CS302-Python-2020-Group33 - Object Classification #
+# Object Classification #
 
 The purpose of this project is to create an object recogniser with the help of PyTorch models. 
 
