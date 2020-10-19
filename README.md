@@ -1,4 +1,4 @@
-# Object Classification #
+# Image Recognition - Object Classification AI  #
 
 The purpose of this project is to create an object recogniser with the help of PyTorch models. 
 
@@ -39,8 +39,8 @@ To be able to run this code in your command prompt, you can clone this repositor
 download this repository, the option can be found on the right side of the repository page. Cloning can also be done by 
 using the command, <br />
 ``` 
-$ git clone https://github.com/UOA-CS302-2020/CS302-Python-2020-Group33.git 
-$ cd CS302-Python-2020-Group33
+$ git clone https://github.com/cng822/Image-Recognition-AI.git 
+$ cd Image-Recognition-AI
 $ main.py
 ```
 If wanting to run the code through an IDE, ensure the IDE is Python compatible. Only the main.py file needs to be run. 
